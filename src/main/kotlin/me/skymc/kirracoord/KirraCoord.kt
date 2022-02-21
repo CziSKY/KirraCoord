@@ -10,6 +10,8 @@ import java.io.File
 @Suppress("SpellCheckingInspection", "MemberVisibilityCanBePrivate")
 object KirraCoord : Plugin() {
 
+    // test
+
     @Config
     lateinit var config: Configuration
         private set
