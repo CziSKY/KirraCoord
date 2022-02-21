@@ -3,6 +3,7 @@
 > 作者: @kirraObj (咸蛋)
 
 简单且轻量级的公共点插件, 基于 Kotlin & TabooLib 6 进行开发。
+
 支持 WorldGuard 的区域黑名单。
 
 ## 开发接口
