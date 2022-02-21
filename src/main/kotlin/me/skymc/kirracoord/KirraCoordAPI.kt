@@ -7,8 +7,7 @@ object KirraCoordAPI {
 
     fun tpCoord(player: Player, name: String): Boolean {
         val coord = Loader.getCoordByName(name) ?: return false
-        tpCoord(player, coord)
-        return true
+        return tpCoord(player, coord)
     }
 
     private fun tpCoord(player: Player, coord: Coord): Boolean {

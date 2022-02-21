@@ -8,11 +8,9 @@ import taboolib.platform.util.toBukkitLocation
 @Suppress("SpellCheckingInspection")
 object Loader {
 
-    var coords = mutableListOf<Coord>()
-        private set
+    val coords = mutableListOf<Coord>()
 
-    var disableRegions = mutableListOf<String>()
-        private set
+    val disableRegions = mutableListOf<String>()
 
     @Awake(LifeCycle.ENABLE)
     fun i() {
