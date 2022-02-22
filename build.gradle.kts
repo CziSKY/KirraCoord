@@ -13,6 +13,7 @@ taboolib {
     install("common")
     install("common-5")
     install("module-configuration")
+    install("module-chat")
     install("module-lang")
     install("platform-bukkit")
     install("expansion-command-helper")

@@ -2,30 +2,21 @@ package me.skymc.kirracoord
 
 import taboolib.common.LifeCycle
 import taboolib.common.platform.Awake
-import taboolib.module.configuration.util.getLocation
-import taboolib.platform.util.toBukkitLocation
 
 @Suppress("SpellCheckingInspection")
 object Loader {
 
     val coords = mutableListOf<Coord>()
 
-    val disableRegions = mutableListOf<String>()
-
     @Awake(LifeCycle.ENABLE)
     fun i() {
         coords.clear()
-        disableRegions.clear()
         val section = KirraCoord.coordFile.getKeys(false)
         section.forEach {
             val id = it
-            val loc = KirraCoord.coordFile.getLocation("$it.loc") ?: return@forEach
-            coords += Coord(id, loc.toBukkitLocation())
+            val loc = KirraCoord.coordFile.getString("$it.loc") ?: return@forEach
+            coords += Coord(id, loc.parseToLoc() ?: return@forEach)
             printToConsole("已加载点: $id")
-        }
-        KirraCoord.config.getStringList("disable-regions").forEach {
-            disableRegions += it
-            printToConsole("已加载禁用区域: $it")
         }
     }
 
@@ -33,7 +24,7 @@ object Loader {
 
     fun addCoord(coord: Coord) {
         coords += coord
-        KirraCoord.coordFile["${coord.name}.loc"] = coord.loc
+        KirraCoord.coordFile["${coord.name}.loc"] = coord.loc.parseToString()
         KirraCoord.coordFile.saveToFile(KirraCoord.coordFile.file)
         printToConsole("已添加点: ${coord.name}")
     }

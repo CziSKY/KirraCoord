@@ -68,7 +68,7 @@ object Commands {
     val list = subCommand {
         execute<CommandSender> { sender, _, _ ->
             val list = Loader.coords.map { it.name }
-            sender.sendLang("command-list-coord", list, list.size)
+            sender.sendLang("command-coord-list", list, list.size)
         }
     }
 

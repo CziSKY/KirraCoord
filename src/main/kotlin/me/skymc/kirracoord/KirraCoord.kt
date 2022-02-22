@@ -18,6 +18,12 @@ object KirraCoord : Plugin() {
     }
 
     val coordFile by lazy {
-        Configuration.loadFromFile(File(plugin.dataFolder, "coords.yml"))
+        val file = File(plugin.dataFolder, "coords.yml")
+        if (!file.exists()) {
+            file.createNewFile()
+            Configuration.loadFromFile(file)
+        } else {
+            Configuration.loadFromFile(file)
+        }
     }
 }

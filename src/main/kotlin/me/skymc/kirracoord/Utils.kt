@@ -2,24 +2,25 @@
 
 package me.skymc.kirracoord
 
-import com.sk89q.worldguard.WorldGuard
-import com.sk89q.worldguard.protection.regions.ProtectedRegion
 import org.bukkit.Bukkit
 import org.bukkit.Location
 
+fun Location.parseToString(): String {
+    return "${world.name}@$x@$y@$z@$yaw@$pitch"
+}
+
+fun String.parseToLoc(): Location? {
+    val split = split("@")
+    if (split.size != 6) {
+        return null
+    }
+    val world = Bukkit.getWorld(split[0]) ?: return null
+    val x = split[1].toDoubleOrNull() ?: return null
+    val y = split[2].toDoubleOrNull() ?: return null
+    val z = split[3].toDoubleOrNull() ?: return null
+    val yaw = split[4].toFloatOrNull() ?: return null
+    val pitch = split[5].toFloatOrNull() ?: return null
+    return Location(world, x, y, z, yaw, pitch)
+}
+
 fun printToConsole(str: String) = Bukkit.getConsoleSender().sendMessage("[KirraCoord] $str")
-
-fun getAllRegions(): List<ProtectedRegion> {
-    return mutableListOf<ProtectedRegion>().also { regionList ->
-        WorldGuard.getInstance().platform.regionContainer.loaded.forEach {
-            regionList += it.regions.values
-        }
-    }
-}
-
-fun getRegionByLoc(loc: Location): String? {
-    getAllRegions().forEach {
-        if (it.contains(loc.blockX, loc.blockY, loc.blockZ)) return it.id
-    }
-    return null
-}
