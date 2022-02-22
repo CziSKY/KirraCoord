@@ -11,8 +11,9 @@ object KirraCoordAPI {
     }
 
     private fun tpCoord(player: Player, coord: Coord): Boolean {
-        val isCancelled = CoordTeleportEvent(player, coord).call()
-        if (isCancelled) {
+        val event = CoordTeleportEvent(player, coord)
+        event.call()
+        if (event.isCancelled) {
             return false
         }
         player.teleport(coord.loc)

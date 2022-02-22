@@ -5,11 +5,6 @@ plugins {
 }
 
 taboolib {
-    description {
-        dependencies {
-            name("WorldGuard").optional(true)
-        }
-    }
     install("common")
     install("common-5")
     install("module-configuration")
