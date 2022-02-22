@@ -23,7 +23,7 @@ object Loader {
             coords += Coord(id, loc.toBukkitLocation())
             printToConsole("已加载点: $id")
         }
-        KirraCoord.config.getStringList("disable-region").forEach {
+        KirraCoord.config.getStringList("disable-regions").forEach {
             disableRegions += it
             printToConsole("已加载禁用区域: $it")
         }

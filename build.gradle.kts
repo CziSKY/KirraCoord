@@ -1,6 +1,5 @@
 plugins {
     `java-library`
-    `maven-publish`
     id("io.izzel.taboolib") version "1.34"
     id("org.jetbrains.kotlin.jvm") version "1.5.10"
 }
@@ -38,15 +37,4 @@ tasks.withType<JavaCompile> {
 configure<JavaPluginConvention> {
     sourceCompatibility = JavaVersion.VERSION_1_8
     targetCompatibility = JavaVersion.VERSION_1_8
-}
-
-tasks {
-    val sourcesJar by creating(Jar::class) {
-        archiveClassifier.set("sources")
-        from(sourceSets.getByName("main").java.srcDirs)
-    }
-
-    artifacts {
-        archives(sourcesJar)
-    }
 }
