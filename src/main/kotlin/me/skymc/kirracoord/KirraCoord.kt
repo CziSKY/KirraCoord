@@ -21,9 +21,7 @@ object KirraCoord : Plugin() {
         val file = File(plugin.dataFolder, "coords.yml")
         if (!file.exists()) {
             file.createNewFile()
-            Configuration.loadFromFile(file)
-        } else {
-            Configuration.loadFromFile(file)
         }
+        Configuration.loadFromFile(file)
     }
 }
